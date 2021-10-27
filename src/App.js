@@ -85,6 +85,7 @@ import Notifications from "./Notifications";
 import GroceryList from "./GroceryList";
 import Todo from "./Todo";
 import Quote from "./Quote";
+import { useState } from "react";
 
 
 const notifications = ["You received a package", "The weather is sunny"];
@@ -116,6 +117,10 @@ const quote = {
 const handleClick = (e) => console.log(e.target);
 
 function App() {
+  const handleSubscribe = (e) => console.log("User has been subscribed...");
+
+  const [subscribed, setSubscribed] = useState(false);
+
   return (
     <>
       <Header />
@@ -126,7 +131,21 @@ function App() {
       <Notifications notifications={notifications} />
       <GroceryList items={groceryList} />
       <Todo items={todos} />
+
       <button onClick={handleClick}>Subscribe</button>;
+
+      
+      <section>
+      <p>Please click to subscribe to my updates!</p>
+      <button onClick={handleSubscribe}>Subscribe</button>
+      </section>
+
+
+      <section>
+      <p>Please click to subscribe to my updates!</p>
+      <button onClick={() => setSubscribed(!subscribed)}>{subscribed ? "Unsubscribe" : "Subscribe"}</button>
+      </section>
+
 
       {/* <Footer /> */}
     </>
