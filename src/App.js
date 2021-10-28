@@ -78,6 +78,7 @@
 
 import "./App.css";
 import Header from "./Header";
+import Content from "./Content";
 import WelcomeBack from "./WelcomeBack";
 // import Footer from "./Footer";
 import Greeting from "./Greeting";
@@ -86,6 +87,7 @@ import GroceryList from "./GroceryList";
 import Todo from "./Todo";
 import Quote from "./Quote";
 import { useState } from "react";
+
 
 
 const notifications = ["You received a package", "The weather is sunny"];
@@ -120,10 +122,20 @@ function App() {
   const handleSubscribe = (e) => console.log("User has been subscribed...");
 
   const [subscribed, setSubscribed] = useState(false);
+  const [subscribedCount, setSubscribedCount] = useState(0);
+  const [alerts, setAlerts] = useState(false);
+
+  //Header & Content
+  const [loggedIn, setLoggedIn] = useState(false);
+  const toggleLoggedIn = () => setLoggedIn(!loggedIn);
+
 
   return (
     <>
-      <Header />
+    <div>
+      <Header loggedIn={loggedIn} handleLoggedInClick={toggleLoggedIn} />
+      <Content loggedIn={loggedIn} />
+    </div>
       <Greeting language="es" />
       <WelcomeBack name="Joe" />
       <WelcomeBack name="Anna" />
@@ -140,14 +152,27 @@ function App() {
       <button onClick={handleSubscribe}>Subscribe</button>
       </section>
 
-
       <section>
       <p>Please click to subscribe to my updates!</p>
-      <button onClick={() => setSubscribed(!subscribed)}>{subscribed ? "Unsubscribe" : "Subscribe"}</button>
+      <p>Subscriber Count: {subscribedCount}</p>
+      <button
+        onClick={() => {
+          setSubscribed(!subscribed);
+          setSubscribedCount((currentCount) => currentCount + 1);
+          setSubscribedCount((currentCount) => currentCount + 1);
+          if (!alerts) setAlerts(true);
+        }}
+      >
+        {subscribed ? "Unsubscribe" : "Subscribe"}
+      </button>
+      <button onClick={() => setAlerts(!alerts)}>
+        {alerts ? "Stop Email Alerts" : "Get Email Alerts"}
+      </button>
       </section>
+      
 
 
-      {/* <Footer /> */}
+      
     </>
   );
 }

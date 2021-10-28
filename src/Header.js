@@ -1,7 +1,11 @@
 import "./Header.css";
 
-function Header() {
-  return <h1>Header to the page.</h1>;
+function Header({ loggedIn, handleLoggedInClick }) {
+  return (
+    <button onClick={handleLoggedInClick}>
+      {loggedIn ? "Log Out" : "Log In"}
+    </button>
+  );
 }
 
 export default Header;
