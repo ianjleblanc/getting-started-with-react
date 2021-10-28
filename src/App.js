@@ -86,7 +86,10 @@ import Notifications from "./Notifications";
 import GroceryList from "./GroceryList";
 import Todo from "./Todo";
 import Quote from "./Quote";
+import CoinTossCounter from "./CoinTossCounter";
 import { useState } from "react";
+import RegistrationForm from "./RegistrationForm";
+import SubscriberForm from "./SubscriberForm";
 
 
 
@@ -129,12 +132,15 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const toggleLoggedIn = () => setLoggedIn(!loggedIn);
 
+  //Subscriber 
+  
+  
 
   return (
     <>
     <div>
       <Header loggedIn={loggedIn} handleLoggedInClick={toggleLoggedIn} />
-      <Content loggedIn={loggedIn} />
+      <Content loggedIn={loggedIn} text="My content."/>
     </div>
       <Greeting language="es" />
       <WelcomeBack name="Joe" />
@@ -169,8 +175,13 @@ function App() {
         {alerts ? "Stop Email Alerts" : "Get Email Alerts"}
       </button>
       </section>
-      
-
+      <br></br>
+      <CoinTossCounter />
+      <br></br>
+      <RegistrationForm />
+      <br></br>
+      <br></br>
+      <SubscriberForm />
 
       
     </>
