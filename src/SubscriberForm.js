@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export default function SubscriberForm() {
+export default function SubscriberForm({ createSubscriber }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const handleNameChange = (event) => setName(event.target.value);
@@ -10,9 +10,9 @@ export default function SubscriberForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Submitted:", name, email);
-
+        createSubscriber({name, email});
         setName("");
-  setEmail("");
+        setEmail("");
       };
   
     console.log("Current value of name:", name);

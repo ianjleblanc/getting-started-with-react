@@ -90,6 +90,8 @@ import CoinTossCounter from "./CoinTossCounter";
 import { useState } from "react";
 import RegistrationForm from "./RegistrationForm";
 import SubscriberForm from "./SubscriberForm";
+import SubscriberView from "./SubscriberView";
+import SubscriberList from "./SubscriberList";
 
 
 
@@ -132,7 +134,17 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const toggleLoggedIn = () => setLoggedIn(!loggedIn);
 
-  //Subscriber 
+  //Subscriber Create/Delete
+  const [subscribers, setSubscribers] = useState([]);
+  const createSubscriber = (newSubscriber) =>
+    setSubscribers((currentSubscribers) => [
+      newSubscriber,
+      ...currentSubscribers,
+    ]);
+  const deleteSubscriber = (indexToDelete) =>
+    setSubscribers((currentSubscribers) =>
+      currentSubscribers.filter((post, index) => index !== indexToDelete)
+    );
   
   
 
@@ -182,6 +194,10 @@ function App() {
       <br></br>
       <br></br>
       <SubscriberForm />
+      <br></br>
+      <br></br>
+      <SubscriberForm createSubscriber={createSubscriber} />
+      <SubscriberList subscribers={subscribers} deleteSubscriber={deleteSubscriber} />
 
       
     </>
